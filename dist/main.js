@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("consosle.log(123)\r\n\r\n// \r\n\r\n\r\n\r\n\r\n/**\r\n * webpack零配置操作 ：npx webpack\r\n * webapck.config.js是webpack的默认配置文件\r\n * \r\n */\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("consosle.log(123)\r\n// \r\n\r\n\r\n\r\n\r\n/**\r\n * webpack零配置操作 ：npx webpack\r\n * webapck.config.js是webpack的默认配置文件\r\n * \r\n */\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

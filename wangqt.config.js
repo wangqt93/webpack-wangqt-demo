@@ -14,11 +14,12 @@ webpack打包时，默认的配置文件为webapck.config.js，如何指定打�
  
 
 const path = require('path')
+const { mainModule } = require('process')
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname,'./wangqt'),
-        filename: 'wangqt.js'
+        path: path.resolve(__dirname,'./dist'),
+        filename: "main.js"
     },
-    mode: 'development'
+    mode: 'production'
 }
