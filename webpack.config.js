@@ -12,30 +12,78 @@
     html-webpack-plugin :安装 npm install html-webpack-plugin@4 -D   自动生成html文件，引入bundle文件、压缩html
 */
 
-const path =  require('path')   
+const path = require('path')
+
 // 引入插件
 const htmlWebpackPlugin = require('html-webpack-plugin')
+const miniCssExtract =require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+// 引入postcss插件
+const autoprefixer = require('autoprefixer')
+const cssnano = require('cssnano')
+
 
 module.exports = {
     entry: {
         // 这里有mian/wangqt两个入口，每个入口都就是一个chunks组
+        // entry的每个
         main: './src/index.js',
         wangqt: './src/wangqt.js'
     },
     output: {
-        path: path.resolve(__dirname,"./dist"),  // 存储文件的位置，要求是绝对路径
-        filename: "[name].js",   
+        path: path.resolve(__dirname, "./dist"), // 存储文件的位置，要求是绝对路径
+        filename: "[name].js",
     },
-    mode: "development",  // development or production
+    mode: "development", // development or production
+    resolveLoader: {
+        modules: ['node_modules',"./myLoader"]
+    },
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader','css-loader']   // 当有多个loader时，数组中的loader自右向左执行loader
+                use: ['style-loader', 'css-loader'] // 当有多个loader时，数组中的loader自右向左执行loader
             },
             {
                 test: /\.less$/,
-                use: ['style-loader','css-loader','less-loader']
+                use: [
+                    // 'style-loader',
+                    miniCssExtract.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                ident: 'postcss',
+                                plugins: [
+                                    // 兼弱不同浏览器css插件
+                                    autoprefixer({    
+                                        browsers: [
+                                            'last 10 Chrome versions',
+                                            'last 5 Firefox versions',
+                                            'Safari >= 6',
+                                            'ie> 8'
+                                        ]
+                                    }),
+                                    cssnano({preset: 'default'}),  // css压缩
+                                ]
+                            }
+                        }
+                    },
+                    'less-loader'
+                ]
+            },
+            {
+                test: /\.js$/,
+                use: [
+                    {
+                       loader: 'index',
+                       options: {
+                           name: '王庆腾'
+                       }
+                    }
+                ]
             }
         ]
     },
@@ -45,13 +93,18 @@ module.exports = {
             template: "./src/index.html",
             // 生成html文件的名称
             filename: 'index.html',
-            // 引入相应chunks组的文件
+            // 引入相应chunks组的文件(入口js文件)
             chunks: ["main"]
         }),
         new htmlWebpackPlugin({
             template: "./src/index.html",
-            filename: 'wangqt.html',
+            filename: '[name].html',
             chunks: ["wangqt"]
         }),
+        new miniCssExtract({
+            filename: 'wangqt.css'
+        }),
+        new CleanWebpackPlugin()
+
     ]
 }

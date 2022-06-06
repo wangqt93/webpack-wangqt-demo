@@ -1,7 +1,5 @@
-consosle.log(123)
-// 
 
-
+console.log('123')
 
 
 /**
@@ -9,3 +7,7 @@ consosle.log(123)
  * webapck.config.js是webpack的默认配置文件
  * 
  */
+
+
+
+
