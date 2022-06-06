@@ -1,5 +1,9 @@
-
+import img from '../asset/版本.png'
 console.log('123')
+// const appDom = document.querySelector('#app')
+// const Img = document.createElement('img')
+// Img.setAttribute('src',img)
+// appDom.appendChild(Img)
 
 
 /**

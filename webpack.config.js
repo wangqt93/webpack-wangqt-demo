@@ -84,6 +84,42 @@ module.exports = {
                        }
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|webp)$/,
+                use: [
+                    // {
+                    //     loader: 'file-loader',
+                    //     options: {
+                    //         name: '[name].[ext]',  // 占位符[ext]
+                    //         outputPath: 'images',
+                    //         publicPath: './images'   // css文件使用图片的位置
+                    //     }
+                    // },
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name].[ext]',  // 占位符[ext]
+                            outputPath: 'images',
+                            publicPath: './images',   // css文件使用图片的位置
+                            limit: 4 * 1024,   // 25kb
+                        }
+                    },
+                    'image-webpack-loader'
+                ]
+            },
+            {
+                test: /\.(svg|eot|woff|woff2|svg|ttf)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'font',
+                            publicPath: './font'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -98,7 +134,7 @@ module.exports = {
         }),
         new htmlWebpackPlugin({
             template: "./src/index.html",
-            filename: '[name].html',
+            filename: 'wangqt.html',
             chunks: ["wangqt"]
         }),
         new miniCssExtract({
