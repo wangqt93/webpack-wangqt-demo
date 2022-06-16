@@ -14,6 +14,5 @@
  */
 
 module.exports = function(source) {
-    console.log(this.query.name)
     return source.replace('123',this.query.name)
 }

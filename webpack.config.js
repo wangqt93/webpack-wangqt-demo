@@ -15,8 +15,8 @@
 const path = require('path')
 
 // 引入插件
-const htmlWebpackPlugin = require('html-webpack-plugin')
-const miniCssExtract =require('mini-css-extract-plugin')
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const miniCssExtract =require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // 引入postcss插件
@@ -28,8 +28,8 @@ module.exports = {
     entry: {
         // 这里有mian/wangqt两个入口，每个入口都就是一个chunks组
         // entry的每个
-        main: './src/index.js',
-        wangqt: './src/wangqt.js'
+        main: './src/wangqt.js',
+        // wangqt: './src/wangqt.js'
     },
     output: {
         path: path.resolve(__dirname, "./dist"), // 存储文件的位置，要求是绝对路径
@@ -152,11 +152,11 @@ module.exports = {
             // 引入相应chunks组的文件(入口js文件)
             chunks: ["main"]
         }),
-        new htmlWebpackPlugin({
-            template: "./src/index.html",
-            filename: 'wangqt.html',
-            chunks: ["wangqt"]
-        }),
+        // new htmlWebpackPlugin({
+        //     template: "./src/index.html",
+        //     filename: 'wangqt.html',
+        //     chunks: ["wangqt"]
+        // }),
         new miniCssExtract({
             filename: 'wangqt.css'
         }),
