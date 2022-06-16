@@ -95,7 +95,7 @@ module.exports = {
                     //         outputPath: 'images',
                     //         publicPath: './images'   // css文件使用图片的位置
                     //     }
-                    // },
+                    // },0p
                     {
                         loader: 'url-loader',
                         options: {
@@ -105,7 +105,7 @@ module.exports = {
                             limit: 4 * 1024,   // 25kb
                         }
                     },
-                    'image-webpack-loader'
+                    // 'image-webpack-loader'
                 ]
             },
             {
@@ -117,6 +117,26 @@ module.exports = {
                             name: '[name].[ext]',
                             outputPath: 'font',
                             publicPath: './font'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.js/,
+                exclude: /(node_modules | bower_components)/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                [
+                                    "@babel/preset-env",
+                                    {
+                                        corejs: 2,
+                                        useBuiltIns: 'entry'
+                                    }
+                                ]
+                            ]
                         }
                     }
                 ]

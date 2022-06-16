@@ -5,13 +5,17 @@
     "test": "webpack --config ./自定义loader.config.js"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
     "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^5.2.6",
     "cssnano": "^5.1.10",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.2",
     "image-webpack-loader": "^8.1.0",
+    "less": "^4.1.2",
     "less-loader": "^7.3.0",
     "mini-css-extract-plugin": "^1.6.2",
     "postcss": "^8.4.14",
@@ -24,5 +28,8 @@
   "overrideBrowserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
+  }
 }
